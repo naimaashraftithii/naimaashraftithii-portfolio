@@ -165,7 +165,7 @@ export const projects = [
     title: "EventHub – Event Management Platform",
     description:
       "A modern event management platform built using Next.js App Router and NextAuth. Users can create, edit, and manage events with fully secured authentication and responsive layouts.",
-    image: "../src/assets/work_logo/EventManagement.png",
+    image: "https://i.ibb.co.com/5WYshG7R/Event-Management.png",
     tags: ["Next.js", "NextAuth", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/naimaashraftithii/eventhub-client",
     webapp: "https://eventhub-demo.vercel.app",

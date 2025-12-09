@@ -1,22 +1,28 @@
 // src/components/Contact/Contact.jsx
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const SERVICE_ID = "service_vngk0a";        // ✅ from Email Services screen
+const TEMPLATE_ID = "template_h9r3h2p";     // ✅ from Email Templates screen
+const PUBLIC_KEY = "bbWG_Az-xtDjiuWUj";     // ✅ your PUBLIC key (NOT private)
+
 const Contact = () => {
   const form = useRef();
+
+  // Optional: explicit init (not required if you always pass PUBLIC_KEY to sendForm)
+  useEffect(() => {
+    emailjs.init(PUBLIC_KEY);
+  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
+    if (!form.current) return;
+
     emailjs
-      .sendForm(
-        "service_vngk0a",       // ✅ Your EmailJS Service ID
-        "template_h9r3h2p",     // ✅ Your EmailJS Template ID
-        form.current,
-        "Rz7W9pVF0HdDryNNL"     // ✅ Your Public Key
-      )
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
       .then(
         () => {
           form.current.reset();
@@ -50,12 +56,13 @@ const Contact = () => {
       id="contact"
       className="flex flex-col items-center justify-center py-24 px-[12vw] md:px-[7vw] lg:px-[20vw]"
     >
+      {/* Toast notifications */}
       <ToastContainer />
 
       {/* Section Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-white">CONTACT</h2>
-        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
+        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4" />
         <p className="text-gray-400 mt-4 text-lg font-semibold">
           I’d love to hear from you—reach out for any opportunities or questions!
         </p>
@@ -67,18 +74,12 @@ const Contact = () => {
           Connect With Me <span className="ml-1">🚀</span>
         </h3>
 
-        <form ref={form} onSubmit={sendEmail} className="mt-4 flex flex-col space-y-4">
-          {/* Email */}
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600
-                       focus:outline-none focus:border-purple-500"
-          />
-
-          {/* Name */}
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="mt-4 flex flex-col space-y-4"
+        >
+          {/* Name — must match {{user_name}} in template */}
           <input
             type="text"
             name="user_name"
@@ -88,7 +89,17 @@ const Contact = () => {
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Subject */}
+          {/* Email — must match {{user_email}} in template */}
+          <input
+            type="email"
+            name="user_email"
+            placeholder="Your Email"
+            required
+            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600
+                       focus:outline-none focus:border-purple-500"
+          />
+
+          {/* Subject — must match {{subject}} in template */}
           <input
             type="text"
             name="subject"
@@ -98,7 +109,7 @@ const Contact = () => {
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Message */}
+          {/* Message — must match {{message}} in template */}
           <textarea
             name="message"
             placeholder="Your Message..."

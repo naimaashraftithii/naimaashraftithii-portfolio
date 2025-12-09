@@ -55,19 +55,20 @@ const About = () => {
 
           {/* Resume Button */}
           <a
-            href="https://docs.google.com/document/d/1LnZQWytsOv2r_Wc5QKkazA5lxyiZMvr2vu8MWyf5Uuc/edit?usp=sharing"
+            href="https://docs.google.com/document/d/1LnZQWytsOv2r_Wc5QKkazA5lxyiZMvr2vu8MWyf5Uuc/export?format=pdf"
+            download
             target="_blank"
             rel="noopener noreferrer"
             className="
-              inline-block text-white 
-              py-2.5 px-6 sm:py-3 sm:px-8 
-              rounded-full mt-3 sm:mt-5 
-              text-sm sm:text-base md:text-lg 
-              font-bold 
-              transition-all duration-300 ease-out
-              hover:scale-105 hover:-translate-y-0.5
-              hover:shadow-[0_0_30px_rgba(130,69,236,0.9)]
-            "
+    inline-block text-white 
+    py-2.5 px-6 sm:py-3 sm:px-8 
+    rounded-full mt-3 sm:mt-5 
+    text-sm sm:text-base md:text-lg 
+    font-bold 
+    transition-all duration-300 ease-out
+    hover:scale-105 hover:-translate-y-0.5
+    hover:shadow-[0_0_30px_rgba(130,69,236,0.9)]
+  "
             style={{
               background: "linear-gradient(90deg, #8245ec, #a855f7)",
               boxShadow:
@@ -76,6 +77,7 @@ const About = () => {
           >
             DOWNLOAD CV
           </a>
+
         </div>
 
         {/* ========= RIGHT SIDE (IMAGE) ========= */}

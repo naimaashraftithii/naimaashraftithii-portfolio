@@ -1,0 +1,14 @@
+  {/* Profile */}
+            <section className="flex flex-col items-center text-center">
+              {/* Video block */}
+              <div className="w-64 h-64 rounded-2xl overflow-hidden mb-4 border-4 border-primary/20">
+                <video
+                  src="/videos/codinggirl1.mp4"
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              </div>
+            </section>

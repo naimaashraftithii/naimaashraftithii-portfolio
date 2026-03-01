@@ -4,14 +4,15 @@ import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SERVICE_ID = "service_vngk0a";        // ✅ from Email Services screen
-const TEMPLATE_ID = "template_h9r3h2p";     // ✅ from Email Templates screen
-const PUBLIC_KEY = "bbWG_Az-xtDjiuWUj";     // ✅ your PUBLIC key (NOT private)
+// ✅ EXACT values from your EmailJS dashboard
+const SERVICE_ID = "service_vngk0a";        // Email Services → service_vngk0a
+const TEMPLATE_ID = "template_h9r3h2p";     // Email Templates → template_h9r3h2p
+const PUBLIC_KEY = "bbWG_Az-xtDjiuWUj";     // Account → API keys → Public Key
 
 const Contact = () => {
   const form = useRef();
 
-  // Optional: explicit init (not required if you always pass PUBLIC_KEY to sendForm)
+  // optional but fine
   useEffect(() => {
     emailjs.init(PUBLIC_KEY);
   }, []);
@@ -37,7 +38,7 @@ const Contact = () => {
           });
         },
         (error) => {
-          console.error("Error sending message:", error);
+          console.error("Error sending message:", error); // 👈 check console if it still fails
           toast.error("Failed to send message. Please try again.", {
             position: "top-right",
             autoClose: 3000,
@@ -56,10 +57,8 @@ const Contact = () => {
       id="contact"
       className="flex flex-col items-center justify-center py-24 px-[12vw] md:px-[7vw] lg:px-[20vw]"
     >
-      {/* Toast notifications */}
       <ToastContainer />
 
-      {/* Section Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-white">CONTACT</h2>
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4" />
@@ -68,7 +67,6 @@ const Contact = () => {
         </p>
       </div>
 
-      {/* Form Container */}
       <div className="mt-8 w-full max-w-md bg-[#0d081f] p-6 rounded-lg shadow-lg border border-gray-700">
         <h3 className="text-xl font-semibold text-white text-center">
           Connect With Me <span className="ml-1">🚀</span>
@@ -79,39 +77,35 @@ const Contact = () => {
           onSubmit={sendEmail}
           className="mt-4 flex flex-col space-y-4"
         >
-          {/* Name — must match {{user_name}} in template */}
           <input
             type="text"
-            name="user_name"
+            name="user_name"      // must match {{user_name}} in template
             placeholder="Your Name"
             required
             className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Email — must match {{user_email}} in template */}
           <input
             type="email"
-            name="user_email"
+            name="user_email"     // must match {{user_email}}
             placeholder="Your Email"
             required
             className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Subject — must match {{subject}} in template */}
           <input
             type="text"
-            name="subject"
+            name="subject"        // must match {{subject}}
             placeholder="Subject"
             required
             className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Message — must match {{message}} in template */}
           <textarea
-            name="message"
+            name="message"        // must match {{message}}
             placeholder="Your Message..."
             rows="4"
             required
@@ -119,7 +113,6 @@ const Contact = () => {
                        focus:outline-none focus:border-purple-500"
           />
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-purple-600 to-pink-500 py-3
